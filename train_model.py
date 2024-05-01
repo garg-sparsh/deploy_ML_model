@@ -57,8 +57,25 @@ print(precision, recall, fbeta)
 
 # Optional: implement hyperparameter tuning.
 ## For inference
-X_test, y_test, encoder, lb = data_process.process_data(
-    test, categorical_features=cat_features, label=None, training=False, encoder=encoder, lb=lb)
+#X_test, y_test, encoder, lb = data_process.process_data(
+#    test, categorical_features=cat_features, label=None, training=False, encoder=encoder, lb=lb)
 
 loaded_model = joblib.load('model/random_forest.pkl')
 preds = model.inference(loaded_model, X_test)
+
+slices_results = []
+
+for feature in cat_features:
+    for val in test[feature].unique():
+        
+        filtered = test[feature]==val
+
+        precision, recall, fbeta = model.compute_model_metrics(y_test[filtered],
+                                                         preds[filtered])
+        
+        slices_results.append({"feature":feature,"val":val, "precision":precision,
+                   "recall": recall, "fbeta":fbeta})
+        
+slices = pd.DataFrame(slices_results)
+
+slices.to_csv("./slice_output.txt", index=None)
