@@ -63,6 +63,8 @@ print(precision, recall, fbeta)
 loaded_model = joblib.load('model/random_forest.pkl')
 preds = model.inference(loaded_model, X_test)
 
+print(preds)
+
 slices_results = []
 
 for feature in cat_features:
