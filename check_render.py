@@ -1,26 +1,13 @@
 import requests
+import json
 
 
-df = {
-    "age": 38,
-    "workclass": "Private",
-    "fnlgt": 28887,
-    "education": "11th",
-    "education_num": 7,
-    "maritalStatus": "Married-civ-spouse",
-    "occupation": "Sales",
-    "relationship": "Husband",
-    "race": "White",
-    "sex": "Male",
-    "capital_gain":0,
-    "capital_loss":0,
-    "hoursPerWeek": 40,
-    "nativeCountry": "United-States"
-    }
-r = requests.post('https://nd0821-c3-starter-code-master-1.onrender.com', json=df)
+df  = json.dumps({'age': 25, 'workclass':'Self-emp-not-inc', 'fnlgt': 176756, 'education': 'HS-grad', 
+    'education_num': 9, 'marital_status': 'Never-married', 'occupation': 'Farming-fishing', 'relationship': 'Own-child', 'race':'White', 
+    'sex': 'Male', 'capital_gain': 0, 'capital_loss': 0, 'hours_per_week':35, 'native_country': 'United-States'})
 
-assert r.status_code == 200
+r = requests.post("https://deploy-ml-model-tcb6.onrender.com/predict", data=df)
 
-print("Response code: %s" % r.status_code)
-print("Response body: %s" % r.json())
+print("status_code",r.status_code)
+print("result",r.json())
 
