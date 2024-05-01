@@ -27,4 +27,4 @@ Recall: 0.6707234617985125
 The dataset has only two categories(<50k or >50k), so there are so many professions where people have very different salary ranges, so we should not assume these are the salalries brackets for these occupations.
 
 ## Caveats and Recommendations
-This dataset is quite old, so we should only use this to train an ML algorithm just for learning purposes
+This dataset is quite old, this census was done in 1994, so we should only use this to train an ML algorithm just for learning purposes
