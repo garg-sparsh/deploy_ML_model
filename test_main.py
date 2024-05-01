@@ -27,9 +27,3 @@ def test_get():
     assert r.status_code == 200
     assert r.json() == {"Message": "Welcome"}
 
-
-if __name__ == '__main__':
-    test_post_below()
-    test_post_above()
-    test_get()
-
